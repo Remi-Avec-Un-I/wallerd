@@ -13,6 +13,9 @@ pub fn is_already_running(name: Option<&str>) -> bool {
 }
 
 pub fn create_socket(path: &Path) -> Result<UnixListener> {
+    if let Some(dir) = path.parent() {
+        fs::create_dir_all(dir)?;
+    }
     fs::remove_file(path).or_else(|e| {
         if e.kind() == std::io::ErrorKind::NotFound {
             Ok(())
