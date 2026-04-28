@@ -1,11 +1,12 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname=wallerd
-pkgver=r2.f84f838
+pkgver=r3.9639258
 pkgrel=1
 pkgdesc="A wayland daemon that can display images as a wallpaper, or in a window, with GLSL shader support, and image switch"
 arch=('x86_64')
 url="https://github.com/Remi-Avec-Un-I/wallerd"
 license=('MIT')
+options=('!debug')
 depends=('wayland' 'libglvnd')
 makedepends=('rust' 'git')
 source=("git+$url.git")
