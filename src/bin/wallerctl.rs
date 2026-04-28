@@ -68,6 +68,8 @@ enum WallpaperAction {
 
 #[derive(Subcommand)]
 enum ListTarget {
+    /// List all running wallerd instances
+    Instances,
     /// List all profiles with their configuration (JSON)
     Profiles,
     /// List available shaders (JSON)
@@ -125,6 +127,7 @@ fn build_msg(cmd: &Cmd) -> String {
         },
         Cmd::Config { profile } => format!("config {profile}"),
         Cmd::List { target } => match target {
+            ListTarget::Instances => unreachable!(),
             ListTarget::Profiles => "list profiles".to_string(),
             ListTarget::Shaders { kind } => match kind {
                 ShadersKind::Constant => "list shaders constant".to_string(),
@@ -174,6 +177,14 @@ fn main() {
             clap_mangen::Man::new(Cli::command())
                 .render(&mut std::io::stdout())
                 .unwrap();
+            return;
+        }
+        Cmd::List {
+            target: ListTarget::Instances,
+        } => {
+            for (label, _) in socket::all_instances() {
+                println!("{label}");
+            }
             return;
         }
         _ => {}

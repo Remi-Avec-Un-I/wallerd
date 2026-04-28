@@ -1,6 +1,6 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname=wallerd
-pkgver=r3.9639258
+pkgver=r4.ed26bf5
 pkgrel=1
 pkgdesc="A wayland daemon that can display images as a wallpaper, or in a window, with GLSL shader support, and image switch"
 arch=('x86_64')
